@@ -1,0 +1,25 @@
+package models;
+
+public class GoBetween {
+	
+	public static void run(){
+		
+	}
+	
+	public static void save(){
+		
+	}
+	
+	public static void load(){
+		
+	}
+	
+	public static void accessGame(){
+		
+	}
+	
+	public static void accessPlanner(){
+		
+	}
+
+}

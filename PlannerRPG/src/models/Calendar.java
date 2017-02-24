@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Calendar {
-	private Planner planner;
 	
 	public void printCalendar(Planner planner){
 		ArrayList<Task> tasks = new ArrayList<>();
@@ -16,14 +15,5 @@ public class Calendar {
 			System.out.println(task.toString());
 		}
 	}
-
-	public Planner getPlanner() {
-		return planner;
-	}
-
-	public void setPlanner(Planner planner) {
-		this.planner = planner;
-	}
-	
 	
 }

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>444</y>
+      <w>342</w>
+      <h>552</h>
+    </coordinates>
+    <panel_attributes>Task
+-
+- percentComplete : double
+- isComplete : boolean
+- startDate : Date
+- endDate : Date
+- description : String
+- rewards : String
+- name : String
+- priority : int
+- location : String
+- additionalInfo : String
+- isRecurringWeekly : boolean
+- isRecurringDaily : boolean
+- isRecurringMonthly : boolean
+-
++ isRecurringWeekly() : boolean
++ setIsRecurringWeekly(isRecurringWeekly : boolean) : void
++ isRecurringDaily() : boolean
++ setIsRecurringDaily(isRecurringDaily : boolean) : void
++ isRecurringMonthly() : boolean
++ setIsRecurringMonthly(isRecurringMonthly : boolean) : void
++ getAdditionalInfo() : String
++ setAdditionalInfo(additionalInfo : String) : void
++ getLocation() : String
++ setLocation(location : String) : void
++ getPriority() : int
++ setPriority(priority : int) : void
++ getName() : String
++ setName(name : String) : void
++ getStartDate() : Date
++ setStartDate(date : Date) : void
++ getEndDate() : Date
++ setEndDate(date : Date) : void
++ getDescription() : String
++ setDescription(description : String) : void
++ getPercentComplete() : double
++ setPercentComplete(percentComplete : double) : void
++ isComplete() : boolean
++ setIsComplete(isComplete : boolean) : void
++ getRewards() : String
++ setRewards(String rewards) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>192</y>
+      <w>180</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>GameDriver
+-
+
+-
+_+ main(args : String[]) : void_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>474</x>
+      <y>864</y>
+      <w>276</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Vendor
+--
+- forSale : String[]
+--
++ refreshShop(forSale : String[]) : void
++ displayItems(forSale : String[]) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>324</y>
+      <w>234</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>CharacterClass
+-
+- currentHP : int
+- baseHP : int
+- equippedWeapon : Weapon
+- equippedArmor : Armor
+- strBase : int
+- dexBase : int
+- luckBase : int
+- strMod : int
+- dexMod : int
+- luckMod : int
+
+-
++ CharacterClass()
++ getStrBase() : int
++ setStrBase(strBase : int) : void
++ getIntBase() : int
++ setIntBase(intBase : int) : void
++ getDexBase() : int
++ setDexBase(dexBase : int) : void
+/+ attack() : int/
+/+ takeDamage(damage : int) : int/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>372</y>
+      <w>180</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Item
+-
+- name : String
+- value : int
+-
++ Item()
++ getName() : String
++ setName(name : String) : void
++ getValue() : int
++ setValue(value : int) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>528</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Potion
+-
+- healAmount : int
+- des
+-
++ Potion()
++ getHealAmount() : int
++ setHealAmount(healAmount : int) : void
++ use(c : CharacterClass) : void
++ getDescription() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>492</y>
+      <w>102</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>486</y>
+      <w>96</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>636</y>
+      <w>186</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Consumable
+&lt;&lt;interface&gt;&gt;
+-
++ use(c : CharacterClass) : void
++ getDescription() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>546</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>654</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>630</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Food
+-
+- healAmount : int
+-
++ getHealAmount() : int
++ setHealAmount(healAmount : int) : void
++ use(c : CharacterClass) : void
++ getDescription() : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>354</y>
+      <w>300</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Armor
+-
+- armorRating : int
+- damageReduction : int
+- agilityModifier : int
+-
++ Armor()
++ getArmorRating() : int
++ setArmorRating(armorRating : int) : void
++ getDamageReduction() : int
++ setDamageReduction(damageReduction : int) : void
++ getAgilityModifier() : int
++ setAgilityModifer(agilityModifier : int) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>312</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Accessory
+&lt;&lt;enum&gt;&gt;
+-
+TBD</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>384</y>
+      <w>60</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Clothing
+&lt;&lt;enum&gt;&gt;
+-
+TBD</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>468</y>
+      <w>60</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Footwear
+&lt;&lt;enum&gt;&gt;
+-
+TBD</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>642</y>
+      <w>234</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>Enemy
+-
+- dialogue : String
+-
++ getDialogue() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>54</x>
+      <y>318</y>
+      <w>30</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>54</x>
+      <y>426</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>54</x>
+      <y>498</y>
+      <w>30</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>714</y>
+      <w>210</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Hero
+-
+- currentXP : int
+- hungerLevel : int
+- currentRP : int
+- playerLevel : int
+- inventory : String[][]
+- vault : HashMap&lt;String, Item&gt;
+-
++Hero()
++ attack() : int
++ takeDamage(damage : int) : int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>366</x>
+      <y>390</y>
+      <w>30</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1086</x>
+      <y>330</y>
+      <w>246</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Calendar
+-
+- month : Month
+-
++ printCalendar(planner : Planner) : void
++ setMonth(month : Month) : void
++ getMonth() : Month</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>618</y>
+      <w>84</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>594</y>
+      <w>78</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>834</x>
+      <y>48</y>
+      <w>210</w>
+      <h>372</h>
+    </coordinates>
+    <panel_attributes>Planner
+-
+- calender : Calender
+-
+_- run() : void_
+_- save() : void_
+_- load() : void_
+_- addTask() : void_
+_- setEvents() : void_
+_- getEvents() : HashMap_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1002</x>
+      <y>414</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1038</x>
+      <y>342</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1260</x>
+      <y>0</y>
+      <w>180</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>PlannerDriver
+--
+
+--
+_+ main(args : String[]) : void_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1164</x>
+      <y>120</y>
+      <w>84</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Months
+&lt;&lt;enum&gt;&gt;
+--
+JANUARY
+FEBRUARY
+MARCH
+APRIL
+JUNE
+JULY
+AUGUST
+SEPTEMBER
+OCTOBER
+NOVEMBER
+DECEMBER</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

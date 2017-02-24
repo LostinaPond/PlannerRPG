@@ -37,75 +37,99 @@ public class Task implements Comparable<Task>{
 		this.isRecurringWeekly = isRecurringWeekly;
 		this.isRecurringMonthly = isRecurringMonthly;
 	}
+	
 	public double getPercentComplete() {
 		return percentComplete;
 	}
+	
 	public void setPercentComplete(double percentComplete) {
 		this.percentComplete = percentComplete;
 	}
+	
 	public boolean isComplete() {
 		return isComplete;
 	}
+	
 	public void setComplete(boolean isComplete) {
 		this.isComplete = isComplete;
 	}
+	
 	public Date getStartDate() {
 		return startDate;
 	}
+	
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+	
 	public Date getEndDate() {
 		return endDate;
 	}
+	
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	
 	public String getDescription() {
 		return description;
 	}
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	public String[] getRewards() {
 		return rewards;
 	}
+	
 	public void setRewards(String[] rewards) {
 		this.rewards = rewards;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int getPriority() {
 		return priority;
 	}
+	
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
+	
 	public String getLocation() {
 		return location;
 	}
+	
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
 	public boolean isRecurringDaily() {
 		return isRecurringDaily;
 	}
+	
 	public void setRecurringDaily(boolean isRecurringDaily) {
 		this.isRecurringDaily = isRecurringDaily;
 	}
+	
 	public boolean isRecurringWeekly() {
 		return isRecurringWeekly;
 	}
+	
 	public void setRecurringWeekly(boolean isRecurringWeekly) {
 		this.isRecurringWeekly = isRecurringWeekly;
 	}
+	
 	public boolean isRecurringMonthly() {
 		return isRecurringMonthly;
 	}
+	
 	public void setRecurringMonthly(boolean isRecurringMonthly) {
 		this.isRecurringMonthly = isRecurringMonthly;
 	}
