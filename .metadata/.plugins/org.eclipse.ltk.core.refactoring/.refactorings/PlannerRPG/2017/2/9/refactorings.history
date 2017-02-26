@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Planner.java&apos; to &apos;app.PlannerDriver.java&apos;&#x0D;&#x0A;- Original project: &apos;PlannerRPG&apos;&#x0D;&#x0A;- Destination element: &apos;app.PlannerDriver.java&apos;&#x0D;&#x0A;- Original element: &apos;models.Planner.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;app{PlannerDriver.java" element1="/src&lt;models{Planner.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1488128840087" units="1" version="1.0"/>
+</session>

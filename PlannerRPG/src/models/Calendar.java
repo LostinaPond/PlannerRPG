@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import app.Planner;
+
 public class Calendar {
 	
 	public void printCalendar(Planner planner){
