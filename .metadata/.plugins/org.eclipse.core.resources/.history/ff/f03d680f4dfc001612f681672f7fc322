@@ -25,7 +25,8 @@ public class Calendar {
 	}
 	
 	public void populateCalendar(){
-		
+		GregorianCalendar calendar = new GregorianCalendar();
+		System.out.println("Month: " + calendar.MONTH);
 	}
 	
 	public void addTask(){
