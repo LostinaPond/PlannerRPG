@@ -130,7 +130,7 @@
           <children xsi:type="basic:PartStack" xmi:id="_XUlS0fohEeawX4wMjvAZkg" elementId="PartStack@2d3ff2e8" containerData="1574" selectedElement="_1PBuVPoWEeaBaeVl61HcSQ">
             <children xsi:type="advanced:Placeholder" xmi:id="_1PBuVPoWEeaBaeVl61HcSQ" elementId="org.eclipse.jdt.ui.PackageExplorer" ref="_1O1hEPoWEeaBaeVl61HcSQ"/>
           </children>
-          <children xsi:type="basic:PartStack" xmi:id="_1OtlQfoWEeaBaeVl61HcSQ" elementId="org.eclipse.e4.primaryDataStack" containerData="8426" selectedElement="_hQXDkPreEeaZ6LGjeV5REw">
+          <children xsi:type="basic:PartStack" xmi:id="_1OtlQfoWEeaBaeVl61HcSQ" elementId="org.eclipse.e4.primaryDataStack" containerData="8426" selectedElement="_iG8GQPreEeaZ6LGjeV5REw">
             <tags>org.eclipse.e4.primaryDataStack</tags>
             <tags>EditorStack</tags>
             <tags>active</tags>
@@ -141,13 +141,7 @@
               <tags>removeOnHide</tags>
             </children>
             <children xsi:type="basic:Part" xmi:id="_iG8GQPreEeaZ6LGjeV5REw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Planner.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-              <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Planner.java&quot; partName=&quot;Planner.java&quot; title=&quot;Planner.java&quot; tooltip=&quot;PlannerRPG/src/app/Planner.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/PlannerRPG/src/app/Planner.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;198&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-              <tags>Editor</tags>
-              <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-              <tags>removeOnHide</tags>
-            </children>
-            <children xsi:type="basic:Part" xmi:id="_hQXDkPreEeaZ6LGjeV5REw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Calendar.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-              <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Calendar.java&quot; partName=&quot;Calendar.java&quot; title=&quot;Calendar.java&quot; tooltip=&quot;PlannerRPG/src/models/Calendar.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/PlannerRPG/src/models/Calendar.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;543&quot; selectionTopPixel=&quot;30&quot;/>&#xD;&#xA;&lt;/editor>"/>
+              <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Planner.java&quot; partName=&quot;Planner.java&quot; title=&quot;Planner.java&quot; tooltip=&quot;PlannerRPG/src/app/Planner.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/PlannerRPG/src/app/Planner.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;69&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
               <tags>Editor</tags>
               <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
               <tags>removeOnHide</tags>
@@ -165,7 +159,7 @@
             <children xsi:type="advanced:Placeholder" xmi:id="_1PBuV_oWEeaBaeVl61HcSQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" toBeRendered="false" ref="_1O3WQfoWEeaBaeVl61HcSQ"/>
             <children xsi:type="advanced:Placeholder" xmi:id="_1PBuWPoWEeaBaeVl61HcSQ" elementId="org.eclipse.jdt.junit.ResultView" toBeRendered="false" ref="_1PAgMPoWEeaBaeVl61HcSQ"/>
             <children xsi:type="basic:Part" xmi:id="_izwwAPreEeaZ6LGjeV5REw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Task.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-              <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Task.java&quot; partName=&quot;Task.java&quot; title=&quot;Task.java&quot; tooltip=&quot;PlannerRPG/src/models/Task.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/PlannerRPG/src/models/Task.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1180&quot; selectionTopPixel=&quot;285&quot;/>&#xD;&#xA;&lt;/editor>"/>
+              <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Task.java&quot; partName=&quot;Task.java&quot; title=&quot;Task.java&quot; tooltip=&quot;PlannerRPG/src/models/Task.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/PlannerRPG/src/models/Task.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;752&quot; selectionTopPixel=&quot;1355&quot;/>&#xD;&#xA;&lt;/editor>"/>
               <tags>Editor</tags>
               <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
               <tags>removeOnHide</tags>
@@ -332,7 +326,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_1HAawPoWEeaBaeVl61HcSQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_8UDg0PxGEeaA2evvS8QejQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_0wBeQPoWEeaBaeVl61HcSQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_LvHDR_08EeaCsPUGKh-dWw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_0wBeQPoWEeaBaeVl61HcSQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_1HBB0PoWEeaBaeVl61HcSQ" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -356,7 +350,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_1HBB1PoWEeaBaeVl61HcSQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_8UHLMPxGEeaA2evvS8QejQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_0wA3M_oWEeaBaeVl61HcSQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_LvHDUf08EeaCsPUGKh-dWw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_0wA3M_oWEeaBaeVl61HcSQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_1HBB1foWEeaBaeVl61HcSQ" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>

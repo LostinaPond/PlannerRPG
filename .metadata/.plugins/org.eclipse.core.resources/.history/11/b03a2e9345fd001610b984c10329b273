@@ -1,0 +1,29 @@
+package app;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+import models.Dates;
+
+public class Planner {
+
+	private static ArrayList<Dates> dates = new ArrayList<>();
+
+	public static void run(){
+		makeDates();
+		System.out.println();
+	}
+	
+	public static void makeDates(){
+		for(int i = 0; i < 1000; i++){
+			for(int j = 0; j < 12; j++){
+				for(int k = 1; k < 32; k++){
+					Date date = new Date(i + 1900, j, k);
+					Dates newdate = new Dates(date);
+					dates.add(newdate);
+				}
+			}
+		}
+	}
+
+}

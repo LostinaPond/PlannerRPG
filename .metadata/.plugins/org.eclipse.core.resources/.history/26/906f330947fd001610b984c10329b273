@@ -1,0 +1,19 @@
+package app;
+
+import java.util.ArrayList;
+import models.Dates;
+
+public class Planner {
+
+	private static ArrayList<Dates> dates = new ArrayList<>();
+
+	public static void run(){
+		makeDates();
+		System.out.println();
+	}
+	
+	public static void makeDates(){
+		
+	}
+
+}

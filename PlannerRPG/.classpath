@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Matthew/Desktop/CSC150/PlannerRPG_Final/PlannerRPG/joda-time-2.9.7-dist.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

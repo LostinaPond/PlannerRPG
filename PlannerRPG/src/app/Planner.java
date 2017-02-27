@@ -2,27 +2,15 @@ package app;
 
 import java.util.ArrayList;
 
-import models.Calendar;
-
 public class Planner {
-	
+
 	public static void run(){
-		Calendar calendar = new Calendar();
-		calendar.populateCalendar();
+		makeDates();
+		System.out.println();
 	}
 	
-	public static void populateCalendar(){
+	public static void makeDates(){
 		
 	}
-	
-	public static void save(){
-		
-	}
-	
-	public static void load(){
-		
-	}
-	
-	
-	
+
 }

@@ -1,0 +1,19 @@
+package models;
+
+import java.util.Date;
+
+public class Dates {
+	
+	private Date date;
+	
+	public Dates(){
+		
+	}
+	
+	public Dates(Date date){
+		this.date = date;
+	}
+
+	
+	
+}

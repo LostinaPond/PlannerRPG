@@ -1,0 +1,22 @@
+package app;
+
+public class Planner {
+	
+	public static void run(){
+		makeDates();
+		
+	}
+	
+	public static void save(){
+		
+	}
+	
+	public static void load(){
+		
+	}
+	
+	public static void makeDates(){
+		
+	}
+	
+}

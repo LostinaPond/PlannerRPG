@@ -1,0 +1,25 @@
+package app;
+
+import java.util.ArrayList;
+
+public class Planner {
+	
+	public static void run(){
+		
+	}
+	
+	public static void populateCalendar(){
+		
+	}
+	
+	public static void save(){
+		
+	}
+	
+	public static void load(){
+		
+	}
+	
+	
+	
+}
