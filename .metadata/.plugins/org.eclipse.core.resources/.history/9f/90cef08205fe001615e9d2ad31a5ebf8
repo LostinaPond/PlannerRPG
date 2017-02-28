@@ -134,9 +134,9 @@ public class Task implements Comparable<Task>{
 
 	@Override
 	public String toString(){
-		StringBuilder retval = new StringBuilder();
-		retval.append("Task: " + getName() + "(Starts on " + getStartDate() + ")");
-		return retval.toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append("Task: " + getName() + "(Starts on " + getStartDate() + ")");
+		return sb.toString();
 	}
 
 }

@@ -1,12 +1,12 @@
 package app;
 
-//import org.joda.time.LocalDate;
+import org.joda.time.LocalDate;
 
 public class Planner {
 
 	public static void run(){
 		makeDates();
-		System.out.println("words");
+		System.out.println();
 	}
 	
 	public static void makeDates(){
@@ -17,7 +17,7 @@ public class Planner {
 				}else if(i == 2 && j < 29){
 					j = 32;
 				}else{
-//					LocalDate date = new LocalDate(2016, i, j);
+					LocalDate date = new LocalDate(2016, i, j);
 				}
 			}
 		}
