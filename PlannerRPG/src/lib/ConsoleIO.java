@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import gameEnums.Rarity;
+
 public class ConsoleIO {
 	// PRO TIP: Make sure to create and close a new BufferedReader in each
 	// method
@@ -323,4 +325,42 @@ public class ConsoleIO {
 
 		return c;
 }
+	
+	public static Rarity promptForRarity(String prompt, int choice){
+		
+		BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+		boolean keepGoing = true;
+		Rarity r = Rarity.Common;
+		
+		do {
+			try {
+				System.out.println(prompt);
+				int i = promptForInt(prompt, 1, 5);
+				
+				switch(i){
+				case 1:
+					r = Rarity.Trash;
+					break;
+				case 2:
+					r = Rarity.Common;
+					break;
+				case 3:
+					r = Rarity.Rare;
+					break;
+				case 4:
+					r = Rarity.Epic;
+					break;
+				case 5:
+					r = Rarity.Legendary;
+					break;
+				}
+				
+			} catch (IOException ioe){
+			
+			}
+				
+		}while (keepGoing);
+		return r;
+	}
+	
 }

@@ -50,10 +50,25 @@ public class Item {
 	
 	public Rarity whatRarity(){
 		Random rand = new Random();
+		int i = rand.nextInt(100) + 1;
+		int j = rand.nextInt(100) + 1;
+		Rarity output = Rarity.Common;
 		
-		Rarity[] rarities = Rarity.values();
-		 
-		Rarity output = rarities[rand.nextInt(rarities.length)]; 
+		if(i <= 70){
+			if(j <= 70){
+				output = Rarity.Common;
+			} else {
+				output = Rarity.Trash;
+			}
+		} else {
+			if(j <= 70){
+				output = Rarity.Rare;
+			} else if(j > 70 && j <= 95){
+				output = Rarity.Epic;
+			} else {
+				output = Rarity.Legendary;
+			}
+		}
 		
 		return output;
 	}
