@@ -1,31 +1,26 @@
 package app;
 
-import java.util.ArrayList;
-
 import org.joda.time.LocalDate;
 
 import lib.ConsoleIO;
 
 public class Planner {
-	
-	private static ArrayList<LocalDate> dates = new ArrayList<>();
 
 	public static void run(){
 		menu();
 		makeDates();
+		System.out.println("words");
 	}
 	
 	public static void makeDates(){
-		for(int i = 1; i < 13; i++){
-			for(int j = 1; j < 32; j++){
-				if(i == 4 && j == 31 || i == 6 && j == 31 || i == 9 && j == 31 || i == 11 && j == 31){
+		for(int i = 0; i < 12; i++){
+			for(int j = 0; j < 32; j++){
+				if(i == 4 || i == 6 || i == 9 || i == 11 && j < 31){
 					j = 32;
-				}else if(i == 2 && j == 29){
+				}else if(i == 2 && j < 29){
 					j = 32;
-				}
-				if(j != 32){
+				}else{
 					LocalDate date = new LocalDate(2016, i, j);
-					dates.add(date);
 				}
 			}
 		}

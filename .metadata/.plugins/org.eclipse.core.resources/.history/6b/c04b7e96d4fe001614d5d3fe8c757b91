@@ -11,8 +11,11 @@ public class Planner {
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 
 	public static void run(){
-		menu();
+//		menu();
 		makeDates();
+		for(LocalDate date : dates){
+			System.out.println(date);
+		}
 	}
 	
 	public static void makeDates(){
