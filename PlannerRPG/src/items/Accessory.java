@@ -59,17 +59,33 @@ public class Accessory extends Item {
 
 	public Rarity whatRarity() {
 		Random rand = new Random();
+		int i = rand.nextInt(100) + 1;
+		Rarity output = Rarity.Rare;
 
-		Rarity[] rarities = Rarity.values();
-
-		Rarity output = rarities[rand.nextInt(rarities.length)];
-
-		if (output.equals(Rarity.Trash)) {
+		if(i <= 50){
 			output = Rarity.Rare;
-		} else if (output.equals(Rarity.Common)) {
-			output = Rarity.Rare;
+		} else if(i > 50 && i <= 90){
+			output = Rarity.Epic;
+		} else {
+			output = Rarity.Legendary;
 		}
+		
+		return output;
+	}
+	
+	public Rarity whatRarity(Rarity rarity,int percent) {
+		Random rand = new Random();
+		int i = rand.nextInt(100) + percent;
+		Rarity output = Rarity.Rare;
 
+		if(i <= 50){
+			output = rarity;
+		} else if(i <= 95){
+			output = Rarity.Legendary;
+		} else {
+			output = Rarity.Epic;
+		}
+		
 		return output;
 	}
 
@@ -78,9 +94,22 @@ public class Accessory extends Item {
 		setName(getRarity());
 		setValue(getRarity());
 	}
+	
+	public void setValues(Rarity rarity, int i) {
+		setRarity(whatRarity(rarity, i));
+		setName(getRarity());
+		setValue(getRarity());
+	}
 
 	public Accessory() {
 		setValues();
+		this.rarity = getRarity();
+		this.name = getName();
+		this.value = getValue();
+	}
+	
+	public Accessory(Rarity rarity, int percent){
+		setValues(rarity, percent);
 		this.rarity = getRarity();
 		this.name = getName();
 		this.value = getValue();

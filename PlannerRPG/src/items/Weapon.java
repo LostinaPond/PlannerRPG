@@ -132,13 +132,48 @@ public class Weapon extends Item{
 	
 	public Rarity whatRarity(){
 		Random rand = new Random();
+		int i = rand.nextInt(100) + 1;
+		int j = rand.nextInt(100) + 1;
+		Rarity output = Rarity.Common;
 		
-		Rarity[] rarities = Rarity.values();
-		 
-		Rarity output = rarities[rand.nextInt(rarities.length)]; 
+		if(i <= 70){
+			if(j <= 70){
+				output = Rarity.Common;
+			} else {
+				output = Rarity.Trash;
+			}
+		} else {
+			if(j <= 70){
+				output = Rarity.Rare;
+			} else if(j > 70 && j <= 95){
+				output = Rarity.Epic;
+			} else {
+				output = Rarity.Legendary;
+			}
+		}
 		
 		return output;
 	}
+	
+	public Rarity whatRarity(Rarity rarity, int percent){
+		Random rand = new Random();
+		int i = rand.nextInt(100) + percent;
+		int j = rand.nextInt(100) + percent;
+		Rarity output = rarity;
+		
+		if(i <= 70){
+			output = rarity;
+		} else {
+			if(j <= 70){
+				output = Rarity.Rare;
+			} else if(j > 95){
+				output = Rarity.Legendary;
+			} else {
+				output = Rarity.Epic;
+			}
+		}
+	return output;
+}
 	
 	public String getMod() {
 		return mod;
@@ -203,6 +238,15 @@ public class Weapon extends Item{
 		setValue(getRarity());
 	}
 	
+	public void setValues(Rarity rarity, int percent){
+		setRarity(whatRarity(rarity, percent));
+		setDamageMin(getRarity());
+		setDamageMax(getRarity());
+		setMod(getRarity());
+		setName();
+		setValue(getRarity());
+	}
+	
 	public Weapon(){
 		setValues();
 		this.mod = getMod();
@@ -211,6 +255,16 @@ public class Weapon extends Item{
 		this.damageMin = getDamageMin();
 		this.damageMax = getDamageMax();
 	}
+	
+	public Weapon(Rarity rarity, int percent) {
+		setValues(rarity, percent);
+		this.rarity = getRarity();
+		this.mod = getMod();
+		this.name = getName();
+		this.value = getValue();
+		this.damageMin = getDamageMin();
+		this.damageMax = getDamageMax();
+		}
 	
 	public int dealDamage(){
 		int damage = rand.nextInt(getDamageMax()) + getDamageMin();
