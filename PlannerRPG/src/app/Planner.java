@@ -86,6 +86,8 @@ public class Planner {
 	}
 
 	public static void addTask() {
+		String[] options = {"1. Percentage", "2. HOLY SHIT"};
+		int userOpt = ConsoleIO.promptForMenuSelection(options, true);
 		Task t = new Task();
 		nameTask(t);
 		startDate(t);
