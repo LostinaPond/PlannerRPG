@@ -1,67 +1,39 @@
 package app;
 
-<<<<<<< HEAD
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-=======
 import java.io.IOException;
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.Collections;
 
 import org.joda.time.LocalDate;
 
 import lib.ConsoleIO;
-<<<<<<< HEAD
-import lib.ProgramUtil;
-=======
 import models.Task;
->>>>>>> origin/master
 
 public class Planner {
 	private static ArrayList<Task> taskList = new ArrayList<>();
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 	private static String invalid = "Invalid input. Please, enter valid input.";
 
-<<<<<<< HEAD
-	public static void run() throws IOException{
-=======
 	public static void run() {
->>>>>>> origin/master
 		menu();
 		makeDates();
 		savemenu();
 	}
-<<<<<<< HEAD
-	
-	public static void makeDates(){
-		int month = promptForMonth();
-	}
-	
-	public static int promptForMonth(){
-		String[] months = {"1. January" ,"2. January" ,"3. January","4. January","5. January","6. January","7. January","8. January","9. January","10. January","11. January","12. January"};
-		int month = ConsoleIO.promptForMenuSelection(months, false);
-		return month;
-=======
 
 	public static void makeDates() {
-		for (int i = 1; i < 13; i++) {
-			for (int j = 1; j < 32; j++) {
-				if (i == 4 && j == 31 || i == 6 && j == 31 || i == 9 && j == 31 || i == 11 && j == 31) {
-					j = 32;
-				} else if (i == 2 && j == 29) {
-					j = 32;
-				}
-				if (j != 32) {
-					LocalDate date = new LocalDate(2016, i, j);
-					dates.add(date);
-				}
-			}
-		}
->>>>>>> origin/master
+		int month = promptForMonth();
+	}
+
+	public static int promptForMonth() {
+		String[] months = { "1. January", "2. January", "3. January", "4. January", "5. January", "6. January",
+				"7. January", "8. January", "9. January", "10. January", "11. January", "12. January" };
+		int month = ConsoleIO.promptForMenuSelection(months, false);
+		return month;
 	}
 
 	public static void menu() {
@@ -86,7 +58,7 @@ public class Planner {
 	}
 
 	public static void addTask() {
-		String[] options = {"1. Percentage", "2. HOLY SHIT"};
+		String[] options = { "1. Percentage", "2. HOLY SHIT" };
 		int userOpt = ConsoleIO.promptForMenuSelection(options, true);
 		Task t = new Task();
 		nameTask(t);
@@ -188,26 +160,25 @@ public class Planner {
 		}
 		menu();
 	}
-<<<<<<< HEAD
-	
-	public static void savemenu() throws IOException{
-		String[] options = {"1. save", "2. load", "3. back to home"};
+
+	public static void savemenu() {
+		String[] options = { "1. save", "2. load", "3. back to home" };
 		boolean isValid = true;
-		while(isValid){
-			int userOpt = ConsoleIO.promptForMenuSelection(options, false);
-			if(userOpt == 1){
-				save();
-			}else if(userOpt == 2){
-				load();
-			}else if(userOpt == 3){
-				isValid = false;
+		while (isValid) {
+			try {
+				int userOpt = ConsoleIO.promptForMenuSelection(options, false);
+				if (userOpt == 1) {
+					save();
+				} else if (userOpt == 2) {
+					load();
+				} else if (userOpt == 3) {
+					isValid = false;
+				}
+			} catch (IOException e) {
+				System.out.println(invalid);
 			}
 		}
 	}
-	
-	public static void addTask(){
-		
-=======
 
 	public static void nameTask(Task t) {
 		String name = "";
@@ -221,7 +192,6 @@ public class Planner {
 			}
 		} while (!isValid);
 		t.setName(name);
->>>>>>> origin/master
 	}
 
 	public static void startDate(Task t) {
@@ -331,19 +301,19 @@ public class Planner {
 			System.out.println(t.toString());
 		}
 	}
-	
-	public static void save() throws IOException{
+
+	public static void save() throws IOException {
 		String filepath = ConsoleIO.promptForInput("What is the file you'd like to save to?", false);
 		ProgramUtil.writeToFile(filepath, "Dates");
 		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath), "utf-8"));
-		for(LocalDate date : dates){
+		for (LocalDate date : dates) {
 			writer.append("--\n");
 			writer.append(date.toString() + "\n");
 		}
 	}
-	
-	public static void load(){
-		
+
+	public static void load() {
+
 	}
 
 }
