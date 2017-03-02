@@ -1,8 +1,0 @@
-package interfaces;
-
-public interface Tasks {
-
-	
-	public void type();
-	
-}

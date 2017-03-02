@@ -16,7 +16,7 @@ public class Planner {
 	
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 
-	public static void run() throws IOException{
+	public static void run(){
 		menu();
 		makeDates();
 		savemenu();

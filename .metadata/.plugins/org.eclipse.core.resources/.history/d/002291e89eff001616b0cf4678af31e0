@@ -16,7 +16,7 @@ public class Planner {
 	
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 
-	public static void run() throws IOException{
+	public static void run(){
 		menu();
 		makeDates();
 		savemenu();
@@ -28,7 +28,7 @@ public class Planner {
 	
 	public static int promptForMonth(){
 		String[] months = {"1. January" ,"2. January" ,"3. January","4. January","5. January","6. January","7. January","8. January","9. January","10. January","11. January","12. January"};
-		int month = ConsoleIO.promptForMenuSelection(months, false);
+		int month = ConsoleIO.promptForMenuSelection();
 		return month;
 	}
 	
@@ -52,7 +52,7 @@ public class Planner {
 		}
 	}
 	
-	public static void savemenu() throws IOException{
+	public static void savemenu(){
 		String[] options = {"1. save", "2. load", "3. back to home"};
 		boolean isValid = true;
 		while(isValid){

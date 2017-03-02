@@ -16,7 +16,7 @@ public class Planner {
 	
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 
-	public static void run() throws IOException{
+	public static void run(){
 		menu();
 		makeDates();
 		savemenu();
@@ -52,7 +52,7 @@ public class Planner {
 		}
 	}
 	
-	public static void savemenu() throws IOException{
+	public static void savemenu(){
 		String[] options = {"1. save", "2. load", "3. back to home"};
 		boolean isValid = true;
 		while(isValid){
