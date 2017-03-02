@@ -134,9 +134,19 @@ public class Task implements Comparable<Task>{
 
 	@Override
 	public String toString(){
-		StringBuilder retval = new StringBuilder();
-		retval.append("Task: " + getName() + "(Starts on " + getStartDate() + ")");
-		return retval.toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append("Task: " + getName());
+		sb.append("\n\tStarts: " + getStartDate());
+		sb.append("\n\tEnds: " + getEndDate());
+		sb.append("\n\tComplete?: " + isComplete());
+		sb.append("\n\tPercent Complete: " + getPercentComplete() + "%");
+		sb.append("\n\tDescription: " + getDescription());
+		sb.append("\n\tPriority: " + getPriority());
+		sb.append("\n\tLocation: " + getLocation());
+		sb.append("\n\tRecurring Daily?: " + isRecurringDaily());
+		sb.append("\n\tRecurring Weekly?: " + isRecurringWeekly());
+		sb.append("\n\tRecurring Monthly?: " + isRecurringMonthly());
+		return sb.toString();
 	}
 
 }
