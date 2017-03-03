@@ -5,10 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-<<<<<<< HEAD
-=======
 import java.io.IOException;
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,24 +18,14 @@ public class Planner {
 	private static ArrayList<Task> taskList = new ArrayList<>();
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 	private static String invalid = "Invalid input. Please, enter valid input.";
-<<<<<<< HEAD
-	
-	public static void run() throws IOException {
-=======
 
 	public static void run() {
->>>>>>> origin/master
 		menu();
 		makeDates();
 		savemenu();
 	}
-<<<<<<< HEAD
-	
-	public static void makeDates(){
-=======
 
 	public static void makeDates() {
->>>>>>> origin/master
 		int month = promptForMonth();
 	}
 
@@ -173,15 +160,9 @@ public class Planner {
 		}
 		menu();
 	}
-<<<<<<< HEAD
-	
-	public static void savemenu() throws IOException{
-		String[] options = {"1. save", "2. load", "3. back to home"};
-=======
 
 	public static void savemenu() {
 		String[] options = { "1. save", "2. load", "3. back to home" };
->>>>>>> origin/master
 		boolean isValid = true;
 		while (isValid) {
 			try {
