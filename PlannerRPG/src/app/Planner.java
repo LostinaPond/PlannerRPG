@@ -1,17 +1,19 @@
 package app;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import org.joda.time.LocalDate;
 
 import lib.ConsoleIO;
+import lib.ProgramUtil;
 import models.Task;
 
 public class Planner {
@@ -19,25 +21,67 @@ public class Planner {
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 	private static String invalid = "Invalid input. Please, enter valid input.";
 
-	public static void run() {
-		menu();
-		makeDates();
-		savemenu();
+	public static void run() throws IOException {
+		do{
+			int userinput = mainMenu();
+			if(userinput == 1){
+				menu();
+			}else if(userinput == 2){
+				makeDates();
+			}else if(userinput == 3){
+				savemenu();
+			}else if(userinput == 4){
+				printCalendar();
+			}else{
+				System.exit(0);
+			}
+		}while(true);
 	}
 
-	public static void makeDates() {
+	public static void makeDates() throws IOException {
+		dates.clear();
 		int month = promptForMonth();
+		int year = promptForYear();
+		for(int i = 1; i < 32; i++){
+			if(month == 2){
+				if(year%4 == 0){
+					dates.add(new LocalDate(year, month, i));
+					if(i > 28){
+						i = 32;
+					}
+				}else{
+					dates.add(new LocalDate(year, month, i));
+					if(i > 27){
+						i = 32;
+					}
+				}
+			}else{
+				dates.add(new LocalDate(year, month, i));
+			}
+		}
 	}
 
 	public static int promptForMonth() {
-		String[] months = { "1. January", "2. January", "3. January", "4. January", "5. January", "6. January",
-				"7. January", "8. January", "9. January", "10. January", "11. January", "12. January" };
+		String[] months = { ". January", ". February", ". March", ". April", ". May", ". June",
+				". July", ". August", ". September", ". October", ". November", ". December" };
 		int month = ConsoleIO.promptForMenuSelection(months, false);
 		return month;
 	}
 
+	public static int mainMenu(){
+		String[] options = {". Task Menu", ". Look at a specific Month", ". Save Menu", ". Print Calendar"};
+		int retval = ConsoleIO.promptForMenuSelection(options, true);
+		return retval;
+	}
+
+	public static int promptForYear() throws IOException{
+		String input = ConsoleIO.promptForInput("What year would you like?", false);
+		int year = Integer.parseInt(input);
+		return year;
+	}
+
 	public static void menu() {
-		String[] options = { "1. Add task", "2. Remove Task", "3. Edit Task", "4. Print Tasks" };
+		String[] options = { ". Add task", ". Remove Task", ". Edit Task", ". Print Tasks" };
 		boolean isValid = true;
 		while (isValid) {
 			int userOpt = ConsoleIO.promptForMenuSelection(options, true);
@@ -58,7 +102,7 @@ public class Planner {
 	}
 
 	public static void addTask() {
-		String[] options = { "1. Percentage", "2. HOLY SHIT" };
+		String[] options = { ". Percentage", ". HOLY SHIT" };
 		int userOpt = ConsoleIO.promptForMenuSelection(options, true);
 		Task t = new Task();
 		nameTask(t);
@@ -162,7 +206,7 @@ public class Planner {
 	}
 
 	public static void savemenu() {
-		String[] options = { "1. save", "2. load", "3. back to home" };
+		String[] options = { ". save", ". load", ". back to home" };
 		boolean isValid = true;
 		while (isValid) {
 			try {
@@ -275,7 +319,7 @@ public class Planner {
 		boolean isRecurring = ConsoleIO.promptForBool("Is the task recurring? (y/n)", "y", "n");
 		if (isRecurring) {
 			System.out.println("How often is the task recurring?");
-			String[] options = { "1. Daily", "2. Weekly", "3. Monthly" };
+			String[] options = { ". Daily", ". Weekly", ". Monthly" };
 			int userOpt = ConsoleIO.promptForMenuSelection(options, false);
 			if (userOpt == 1) {
 				t.setRecurringDaily(true);
@@ -301,18 +345,26 @@ public class Planner {
 			System.out.println(t.toString());
 		}
 	}
+	
+	public static void printCalendar(){
+		for(LocalDate date : dates){
+			System.out.println(date.toString());
+		}
+	}
 
 	public static void save() throws IOException {
 		String filepath = ConsoleIO.promptForInput("What is the file you'd like to save to?", false);
 		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath), "utf-8"));
+		ProgramUtil.writeToFile(filepath, "Dates");
 		for (LocalDate date : dates) {
 			writer.append("--\n");
 			writer.append(date.toString() + "\n");
 		}
 	}
 
-	public static void load() {
-
+	public static void load() throws IOException {
+		String filepath = ConsoleIO.promptForInput("Which file do you want to load?", false);
+		ProgramUtil.readFile(filepath);
 	}
 
 }

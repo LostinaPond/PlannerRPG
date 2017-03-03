@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="joda-time-2.9.7-no-tzdb.jar"/>
 	<classpathentry kind="lib" path="joda-time-2.9.7-sources.jar"/>
 	<classpathentry kind="lib" path="joda-time-2.9.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Matthew/Desktop/CSC150/PlannerRPG_Final/PlannerRPG/PlannerRPG/SmithM_ProgrammingTools.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Matthew/Desktop/CSC150/PlannerRPG/PlannerRPG/SmithM_ProgrammingTools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
