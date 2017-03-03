@@ -15,6 +15,7 @@ public class Task implements Comparable<Task>{
 	private boolean isRecurringDaily = false;
 	private boolean isRecurringWeekly = false;
 	private boolean isRecurringMonthly = false;
+	private boolean isPercent = false;
 
 
 	public Task() {
@@ -138,8 +139,11 @@ public class Task implements Comparable<Task>{
 		sb.append("Task: " + getName());
 		sb.append("\n\tStarts: " + getStartDate());
 		sb.append("\n\tEnds: " + getEndDate());
-		sb.append("\n\tComplete?: " + isComplete());
-		sb.append("\n\tPercent Complete: " + getPercentComplete() + "%");
+		if (isPercent()){
+			sb.append("\n\tPercent Complete: " + getPercentComplete() + "%");
+		} else if (!isPercent()){
+			sb.append("\n\tComplete?: " + isComplete());
+		}
 		sb.append("\n\tDescription: " + getDescription());
 		sb.append("\n\tPriority: " + getPriority());
 		sb.append("\n\tLocation: " + getLocation());
@@ -147,6 +151,14 @@ public class Task implements Comparable<Task>{
 		sb.append("\n\tRecurring Weekly?: " + isRecurringWeekly());
 		sb.append("\n\tRecurring Monthly?: " + isRecurringMonthly());
 		return sb.toString();
+	}
+
+	public boolean isPercent() {
+		return isPercent;
+	}
+
+	public void setPercent(boolean isPercent) {
+		this.isPercent = isPercent;
 	}
 
 }

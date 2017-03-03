@@ -21,8 +21,6 @@ public class Planner {
 
 	public static void run() {
 		menu();
-		makeDates();
-		savemenu();
 	}
 
 	public static void makeDates() {
@@ -58,17 +56,37 @@ public class Planner {
 	}
 
 	public static void addTask() {
-		String[] options = { "1. Percentage", "2. HOLY SHIT" };
-		int userOpt = ConsoleIO.promptForMenuSelection(options, true);
-		Task t = new Task();
-		nameTask(t);
-		startDate(t);
-		endDate(t);
-		describeTask(t);
-		taskPriority(t);
-		taskLocation(t);
-		taskRecurring(t);
-		taskList.add(t);
+		String[] options = { "1. Percentage", "2. Checkbox" };
+		boolean isValid = false;
+		int userOpt = ConsoleIO.promptForMenuSelection(options, false);
+		do {
+			if (userOpt == 1) {
+				Task t = new Task();
+				t.setPercent(true);
+				nameTask(t);
+				startDate(t);
+				endDate(t);
+				describeTask(t);
+				taskPriority(t);
+				taskLocation(t);
+				taskRecurring(t);
+				taskList.add(t);
+				isValid = true;
+			} else if (userOpt == 2) {
+				Task t = new Task();
+				nameTask(t);
+				startDate(t);
+				endDate(t);
+				describeTask(t);
+				taskPriority(t);
+				taskLocation(t);
+				taskRecurring(t);
+				taskList.add(t);
+				isValid = true;
+			} else {
+				System.out.println(invalid);
+			}
+		} while (!isValid);
 	}
 
 	public static void removeTask() {
@@ -121,7 +139,7 @@ public class Planner {
 			boolean isValid = false;
 			do {
 				try {
-					userOpt = ConsoleIO.promptForInt("Please, choose a task to remove, or enter 0 to go back: ", 0,
+					userOpt = ConsoleIO.promptForInt("Please, choose a task to edit, or enter 0 to go back: ", 0,
 							tempList.size());
 					isValid = true;
 				} catch (IOException e) {
@@ -133,29 +151,52 @@ public class Planner {
 			}
 			Task t = tempList.get(userOpt - 1);
 			System.out.println("What would you like to edit about this task?");
-			String[] options = { "1. Name", "2. Start Date", "3. End Date", "4. Completion Status",
-					"5. Percent Complete", "6. Description", "7. Priority", "8. Location", "9. Recurring Status" };
-			int userOption = ConsoleIO.promptForMenuSelection(options, false);
-			if (userOption == 1) {
-				nameTask(t);
-			} else if (userOption == 2) {
-				startDate(t);
-			} else if (userOption == 3) {
-				endDate(t);
-			} else if (userOption == 4) {
-				completeTask(t);
-			} else if (userOption == 5) {
-				taskPercent(t);
-			} else if (userOption == 6) {
-				describeTask(t);
-			} else if (userOption == 7) {
-				taskPriority(t);
-			} else if (userOption == 8) {
-				taskLocation(t);
-			} else if (userOption == 9) {
-				taskRecurring(t);
-			} else {
-				System.out.println("Invalid input. Please, enter valid input.");
+			if (t.isPercent()) {
+				String[] options = { "1. Name", "2. Start Date", "3. End Date", "4. Percent Complete", "5. Description",
+						"6. Priority", "7. Location", "8. Recurring Status" };
+				int userOption = ConsoleIO.promptForMenuSelection(options, false);
+				if (userOption == 1) {
+					nameTask(t);
+				} else if (userOption == 2) {
+					startDate(t);
+				} else if (userOption == 3) {
+					endDate(t);
+				} else if (userOption == 4) {
+					taskPercent(t);
+				} else if (userOption == 5) {
+					describeTask(t);
+				} else if (userOption == 6) {
+					taskPriority(t);
+				} else if (userOption == 7) {
+					taskLocation(t);
+				} else if (userOption == 8) {
+					taskRecurring(t);
+				} else {
+					System.out.println("Invalid input. Please, enter valid input.");
+				}
+			} else if (!t.isPercent()) {
+				String[] options2 = { "1. Name", "2. Start Date", "3. End Date", "4. Completion Status",
+						"5. Description", "6. Priority", "7. Location", "8. Recurring Status" };
+				int userOption2 = ConsoleIO.promptForMenuSelection(options2, false);
+				if (userOption2 == 1) {
+					nameTask(t);
+				} else if (userOption2 == 2) {
+					startDate(t);
+				} else if (userOption2 == 3) {
+					endDate(t);
+				} else if (userOption2 == 4) {
+					completeTask(t);
+				} else if (userOption2 == 5) {
+					describeTask(t);
+				} else if (userOption2 == 6) {
+					taskPriority(t);
+				} else if (userOption2 == 7) {
+					taskLocation(t);
+				} else if (userOption2 == 8) {
+					taskRecurring(t);
+				} else {
+					System.out.println("Invalid input. Please, enter valid input.");
+				}
 			}
 		}
 		menu();
