@@ -21,7 +21,6 @@ public class Planner {
 	private static ArrayList<LocalDate> dates = new ArrayList<>();
 	private static String invalid = "Invalid input. Please, enter valid input.";
 
-<<<<<<< HEAD
 	public static void run() throws IOException {
 		do{
 			int userinput = mainMenu();
@@ -37,10 +36,6 @@ public class Planner {
 				System.exit(0);
 			}
 		}while(true);
-=======
-	public static void run() {
-		menu();
->>>>>>> origin/master
 	}
 
 	public static void makeDates() throws IOException {
@@ -107,19 +102,6 @@ public class Planner {
 	}
 
 	public static void addTask() {
-<<<<<<< HEAD
-		String[] options = { ". Percentage", ". HOLY SHIT" };
-		int userOpt = ConsoleIO.promptForMenuSelection(options, true);
-		Task t = new Task();
-		nameTask(t);
-		startDate(t);
-		endDate(t);
-		describeTask(t);
-		taskPriority(t);
-		taskLocation(t);
-		taskRecurring(t);
-		taskList.add(t);
-=======
 		String[] options = { "1. Percentage", "2. Checkbox" };
 		boolean isValid = false;
 		int userOpt = ConsoleIO.promptForMenuSelection(options, false);
@@ -151,7 +133,6 @@ public class Planner {
 				System.out.println(invalid);
 			}
 		} while (!isValid);
->>>>>>> origin/master
 	}
 
 	public static void removeTask() {
