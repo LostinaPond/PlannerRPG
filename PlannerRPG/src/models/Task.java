@@ -1,14 +1,14 @@
 package models;
 
-import java.util.Date;
+import org.joda.time.DateTime;
 
-public class Task implements Comparable<Task>{
-	
+public class Task implements Comparable<Task> {
+
 	private double percentComplete = 0;
 	private boolean isComplete = false;
-	private Date startDate = new Date();
-	private Date endDate = new Date();
-	private String description =  "[NULL]";
+	private DateTime startDate = new DateTime();
+	private DateTime endDate = new DateTime();
+	private String description = "[NULL]";
 	private String name = "[NULL]";
 	private int priority = 1;
 	private String location = "[NULL]";
@@ -17,14 +17,12 @@ public class Task implements Comparable<Task>{
 	private boolean isRecurringMonthly = false;
 	private boolean isPercent = false;
 
-
 	public Task() {
 
 	}
 
-	public Task(Date startDate, Date endDate, String description,
-			String name, int priority, String location, boolean isRecurringDaily,
-			boolean isRecurringWeekly, boolean isRecurringMonthly) {
+	public Task(DateTime startDate, DateTime endDate, String description, String name, int priority, String location,
+			boolean isRecurringDaily, boolean isRecurringWeekly, boolean isRecurringMonthly) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.description = description;
@@ -41,7 +39,7 @@ public class Task implements Comparable<Task>{
 	}
 
 	public void setPercentComplete(double percentComplete) {
-		if(percentComplete < 101){
+		if (percentComplete < 101) {
 			this.percentComplete = percentComplete;
 		}
 	}
@@ -54,19 +52,19 @@ public class Task implements Comparable<Task>{
 		this.isComplete = isComplete;
 	}
 
-	public Date getStartDate() {
+	public DateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(DateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public DateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
 	}
 
@@ -91,7 +89,7 @@ public class Task implements Comparable<Task>{
 	}
 
 	public void setPriority(int priority) {
-		if(priority < 6){
+		if (priority < 6) {
 			this.priority = priority;
 		}
 	}
@@ -134,14 +132,14 @@ public class Task implements Comparable<Task>{
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Task: " + getName());
 		sb.append("\n\tStarts: " + getStartDate());
 		sb.append("\n\tEnds: " + getEndDate());
-		if (isPercent()){
+		if (isPercent()) {
 			sb.append("\n\tPercent Complete: " + getPercentComplete() + "%");
-		} else if (!isPercent()){
+		} else if (!isPercent()) {
 			sb.append("\n\tComplete?: " + isComplete());
 		}
 		sb.append("\n\tDescription: " + getDescription());
