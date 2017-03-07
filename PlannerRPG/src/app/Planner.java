@@ -388,7 +388,7 @@ public class Planner {
 			System.out.println(t.toString());
 		}
 	}
-	
+
 	public static void printCalendar(){
 		for(LocalDate date : dates){
 			System.out.println(date.toString());
@@ -398,8 +398,8 @@ public class Planner {
 	public static void save() throws IOException {
 		String filepath = ConsoleIO.promptForInput("What is the file you'd like to save to?", false);
 		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath), "utf-8"));
-		ProgramUtil.writeToFile(filepath, "Dates");
-		for (LocalDate date : dates) {
+		ProgramUtil.writeToFile(filepath, "Tasks");
+		for(LocalDate date : dates){
 			writer.append("--\n");
 			writer.append(date.toString() + "\n");
 		}
