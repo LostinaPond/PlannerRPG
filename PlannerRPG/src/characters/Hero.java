@@ -1,11 +1,25 @@
 package characters;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import items.Item;
 
 public class Hero extends Character {
 
+	ArrayList<Item> inventory = new ArrayList<Item>();
+	private int RP;
+	
 	public int points = 15;
 
+	public int getRP(){
+		return RP;
+	}
+	
+	public void setRP(int RP){
+		this.RP = this.RP + RP;
+	}
+	
 	public int getStrBase() {
 		return strBase;
 	}
@@ -133,6 +147,17 @@ public class Hero extends Character {
 			setLuckMod();
 		} catch (IOException ioe) {
 
+		}
+	}
+	
+	public void addToInv(Item e){
+		inventory.add(e);
+	}
+	
+	public void showInventory(){
+		for (Item i : inventory) {
+			System.out.println(i);
+			System.out.println();
 		}
 	}
 
