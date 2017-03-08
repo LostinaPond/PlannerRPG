@@ -1,27 +1,52 @@
 package app;
 
+import java.awt.Dimension;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import lib.ConsoleIO;
+import lib.ProgramUtil;
 import models.Task;
+import models.User;
 
-public class Planner {
-	private static ArrayList<Task> taskList = new ArrayList<>();
-	private static ArrayList<LocalDate> dates = new ArrayList<>();
+public class Planner implements Serializable{
+	
+	private static User u;
 	private static String invalid = "Invalid input. Please, enter valid input.";
+	private static boolean justOpened = true;
 
 	public static void run() {
+		newMenu();
+	}
+
+	public static void mainMenu() {
+		String[] options = { ". Task Menu", ". Look at a specific Month", ". Save Menu", ". Print Calendar" };
+		int userinput = 0;
+		boolean isValid = false;
 		do {
-			int userinput = mainMenu();
+			try {
+				userinput = ConsoleIO.promptForMenuSelection(options, true);
+				isValid = true;
+			} catch (NumberFormatException nfe) {
+				System.out.println(invalid);
+			}
+		} while (!isValid);
+		do {
 			if (userinput == 1) {
 				menu();
 			} else if (userinput == 2) {
@@ -36,25 +61,68 @@ public class Planner {
 		} while (true);
 	}
 
+	public static void newMenu() {
+		System.out.println("Welcome to PlannerRPG!");
+		String[] options = { ". New User", ". Load User" };
+		boolean isValid = false;
+		int userOpt = 0;
+		do {
+			try {
+				userOpt = ConsoleIO.promptForMenuSelection(options, true);
+			} catch (NumberFormatException nfe) {
+				System.out.println(invalid);
+				menu();
+			}
+			if (userOpt == 1) {
+				newUser();
+				isValid = true;
+			} else if (userOpt == 2) {
+				justOpened = true;
+				loadSwing();
+				isValid = true;
+			} else if (userOpt == 0) {
+				System.exit(0);
+			} else {
+				System.out.println(invalid);
+			}
+		} while (!isValid);
+
+	}
+
+	public static void newUser() {
+		boolean isValid = false;
+		String name = "";
+		do {
+			try {
+				name = ConsoleIO.promptForInput("What is the user's name?", false);
+				isValid = true;
+			} catch (IOException e) {
+				System.out.println(invalid);
+			}
+		} while (!isValid);
+		u = new User(name);
+		mainMenu();
+	}
+
 	public static void makeDates() {
-		dates.clear();
+		u.getDates().clear();
 		int month = promptForMonth();
 		int year = promptForYear();
 		for (int i = 1; i < 32; i++) {
 			if (month == 2) {
 				if (year % 4 == 0) {
-					dates.add(new LocalDate(year, month, i));
+					u.getDates().add(new LocalDate(year, month, i));
 					if (i > 28) {
 						i = 32;
 					}
 				} else {
-					dates.add(new LocalDate(year, month, i));
+					u.getDates().add(new LocalDate(year, month, i));
 					if (i > 27) {
 						i = 32;
 					}
 				}
 			} else {
-				dates.add(new LocalDate(year, month, i));
+				u.getDates().add(new LocalDate(year, month, i));
 			}
 		}
 	}
@@ -101,21 +169,6 @@ public class Planner {
 			}
 		} while (!isValid);
 		return day;
-	}
-
-	public static int mainMenu() {
-		String[] options = { ". Task Menu", ". Look at a specific Month", ". Save Menu", ". Print Calendar" };
-		int retVal = 0;
-		boolean isValid = false;
-		do {
-			try {
-				retVal = ConsoleIO.promptForMenuSelection(options, true);
-				isValid = true;
-			} catch (NumberFormatException nfe) {
-				System.out.println(invalid);
-			}
-		} while (!isValid);
-		return retVal;
 	}
 
 	public static int promptForYear() {
@@ -182,12 +235,12 @@ public class Planner {
 	}
 
 	public static void menu() {
-		String[] options = { ". Add task", ". Remove Task", ". Edit Task", ". Print Tasks" };
+		String[] options = { ". Add task", ". Remove Task", ". Edit Task", ". Print Tasks", ". Return to Main Menu" };
 		boolean isValid = false;
 		int userOpt = 0;
 		do {
 			try {
-				userOpt = ConsoleIO.promptForMenuSelection(options, true);
+				userOpt = ConsoleIO.promptForMenuSelection(options, false);
 			} catch (NumberFormatException nfe) {
 				System.out.println(invalid);
 				menu();
@@ -201,11 +254,11 @@ public class Planner {
 			} else if (userOpt == 3) {
 				editTask();
 				isValid = true;
-			} else if (userOpt == 0) {
-				System.exit(0);
 			} else if (userOpt == 4) {
 				printTasks();
 				isValid = true;
+			} else if (userOpt == 5) {
+				mainMenu();
 			} else {
 				System.out.println(invalid);
 			}
@@ -214,7 +267,8 @@ public class Planner {
 	}
 
 	public static void addTask() {
-		String[] options = { "1. Percentage", "2. Checkbox" };
+		ArrayList<Task> temp = u.getTaskList();
+		String[] options = { ". Percentage", ". Checkbox" };
 		boolean isValid = false;
 		int userOpt = 0;
 		do {
@@ -233,7 +287,7 @@ public class Planner {
 				taskPriority(t);
 				taskLocation(t);
 				taskRecurring(t);
-				taskList.add(t);
+				temp.add(t);
 				isValid = true;
 			} else if (userOpt == 2) {
 				Task t = new Task();
@@ -244,19 +298,17 @@ public class Planner {
 				taskPriority(t);
 				taskLocation(t);
 				taskRecurring(t);
-				taskList.add(t);
+				temp.add(t);
 				isValid = true;
 			} else {
 				System.out.println(invalid);
 			}
 		} while (!isValid);
+		u.setTaskList(temp);
 	}
 
 	public static void removeTask() {
-		ArrayList<Task> tempList = new ArrayList<>();
-		for (Task t : taskList) {
-			tempList.add(t);
-		}
+		ArrayList<Task> tempList = u.getTaskList();
 		if (tempList.isEmpty()) {
 			System.out.println("There are currently no tasks.");
 		} else {
@@ -279,17 +331,15 @@ public class Planner {
 			if (userOpt == 0) {
 				menu();
 			}
-			taskList.remove(tempList.get(userOpt - 1));
+			tempList.remove(tempList.get(userOpt - 1));
 			System.out.println("Task removed.");
 		}
+		u.setTaskList(tempList);
 		menu();
 	}
 
 	public static void editTask() {
-		ArrayList<Task> tempList = new ArrayList<>();
-		for (Task t : taskList) {
-			tempList.add(t);
-		}
+		ArrayList<Task> tempList = u.getTaskList();
 		if (tempList.isEmpty()) {
 			System.out.println("There are currently no tasks.");
 		} else {
@@ -362,24 +412,24 @@ public class Planner {
 				}
 			}
 		}
+		u.setTaskList(tempList);
 		menu();
 	}
 
 	public static void savemenu() {
-		String[] options = { ". save", ". load", ". back to home" };
+		String[] options = { ". Save", ". Switch User", ". Back to Home" };
 		boolean isValid = true;
 		while (isValid) {
-			try {
-				int userOpt = ConsoleIO.promptForMenuSelection(options, false);
-				if (userOpt == 1) {
-					save();
-				} else if (userOpt == 2) {
-					load();
-				} else if (userOpt == 3) {
-					isValid = false;
-				}
-			} catch (IOException e) {
-				System.out.println(invalid);
+			int userOpt = ConsoleIO.promptForMenuSelection(options, true);
+			if (userOpt == 1) {
+				saveSwing();
+			} else if (userOpt == 2) {
+				justOpened = false;
+				loadSwing();
+			} else if (userOpt == 3) {
+				menu();
+			} else if (userOpt == 0) {
+				System.exit(0);
 			}
 		}
 	}
@@ -519,29 +569,178 @@ public class Planner {
 	}
 
 	public static void printTasks() {
-		for (Task t : taskList) {
-			System.out.println(t.toString());
+		if (u.getTaskList().isEmpty()) {
+			System.out.println("There aren't any tasks, fool!");
+		} else {
+			for (Task t : u.getTaskList()) {
+				System.out.println(t.toString());
+			}
 		}
 	}
+
 	public static void printCalendar() {
-		for (LocalDate date : dates) {
+		for (LocalDate date : u.getDates()) {
 			System.out.println(date.toString());
 		}
 	}
 
-	public static void save() throws IOException {
-		String filepath = ConsoleIO.promptForInput("What is the file you'd like to save to?", false);
-		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath), "utf-8"));
-		ProgramUtil.writeToFile(filepath, "Tasks");
-		for(LocalDate date : dates){
-			writer.append("--\n");
-			writer.append(date.toString() + "\n");
+	public static void saveSerialize() {
+		String filepath = "";
+		boolean isValid = false;
+		while (!isValid) {
+			try {
+				filepath = ConsoleIO.promptForInput("What is the folder you'd like to save to?", false);
+				isValid = true;
+			} catch (IOException e1) {
+				System.out.println(invalid);
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(filepath + "/" + u.getName());
+		String fileName = sb.toString();
+		boolean isValid2 = false;
+		while (!isValid2) {
+			try {
+				FileOutputStream fileOut = new FileOutputStream(fileName);
+				ObjectOutputStream out = new ObjectOutputStream(fileOut);
+				out.writeObject(u);
+				out.close();
+				fileOut.close();
+				isValid2 = true;
+			} catch (IOException i) {
+				System.out.println(invalid);
+			}
 		}
 	}
 
-	public static void load() throws IOException {
-		String filepath = ConsoleIO.promptForInput("Which file do you want to load?", false);
-		ProgramUtil.readFile(filepath);
+	public static void loadDeserialize() {
+		u = null;
+		String filepath = "";
+		boolean isValid = false;
+		while (!isValid) {
+			try {
+				filepath = ConsoleIO.promptForInput("What is the folder you'd like to load from?", false);
+				isValid = true;
+			} catch (IOException e1) {
+				System.out.println(invalid);
+			}
+		}
+
+		// int counter = 1;
+		// File[] files = new File(filepath).listFiles();
+		//
+		// for (File file : files) {
+		// if (file.isFile()) {
+		// System.out.println(counter + ". " + file.getName());
+		// }
+		// counter += 1;
+		// }
+		// boolean isValid2 = false;
+		// int user = 0;
+		// do {
+		// try {
+		// user = ConsoleIO.promptForInt("Which user would you like to load?",
+		// 1, counter);
+		// isValid2 = true;
+		// } catch (IOException e) {
+		// System.out.println(invalid);
+		// }
+		// } while (!isValid2);
+		// String userName = files[user].getName();
+		boolean notvalid = true;
+		String userName = "";
+		do {
+			try {
+				userName = ConsoleIO.promptForInput("What is the name of the user you'd like to load?", false);
+				notvalid = false;
+			} catch (IOException e) {
+				System.out.println(invalid);
+			}
+		} while (notvalid);
+		boolean loading = true;
+		StringBuilder sb = new StringBuilder();
+		sb.append(filepath + "/" + userName);
+		String fileName = sb.toString();
+		while (loading) {
+			try {
+				FileInputStream fileIn = new FileInputStream(fileName);
+				ObjectInputStream in = new ObjectInputStream(fileIn);
+				u = (User) in.readObject();
+				in.close();
+				fileIn.close();
+				loading = false;
+			} catch (IOException i) {
+				System.out.println(invalid);
+			} catch (ClassNotFoundException c) {
+				System.out.println(invalid);
+			}
+		}
+		mainMenu();
+	}
+
+	public static void loadSwing() {
+		boolean loading = true;
+		while (loading) {
+			try {
+				JButton open = new JButton();
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Open File");
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				fileChooser.setPreferredSize(new Dimension(800, 600));
+				fileChooser.setVisible(true);
+				if (fileChooser.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
+
+					// load from file
+				}
+				String file = fileChooser.getSelectedFile().getAbsolutePath();
+
+				FileInputStream fileIn = new FileInputStream(file);
+				ObjectInputStream in = new ObjectInputStream(fileIn);
+				u = (User) in.readObject();
+				in.close();
+				fileIn.close();
+				loading = false;
+			} catch (IOException i) {
+				System.out.println(invalid);
+			} catch (ClassNotFoundException c) {
+				System.out.println(invalid);
+			} catch (NullPointerException n) {
+				if (justOpened) {
+					newMenu();
+				} else {
+					savemenu();
+				}
+			}
+		}
+		mainMenu();
+	}
+	
+	public static void saveSwing(){
+		
+		boolean isValid2 = false;
+		while (!isValid2) {
+			try {
+				JButton open = new JButton();
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Open File");
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				fileChooser.setPreferredSize(new Dimension(800, 600));
+				fileChooser.setVisible(true);
+				if (fileChooser.showSaveDialog(open) == JFileChooser.APPROVE_OPTION) {
+
+					// load from file
+				}
+				String file = fileChooser.getSelectedFile().getAbsolutePath();
+				FileOutputStream fileOut = new FileOutputStream(file);
+				ObjectOutputStream out = new ObjectOutputStream(fileOut);
+				out.writeObject(u);
+				out.close();
+				fileOut.close();
+				isValid2 = true;
+			} catch (IOException i) {
+				System.out.println(invalid);
+			}
+		}
 	}
 
 }

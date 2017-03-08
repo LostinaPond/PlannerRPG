@@ -2,13 +2,13 @@ package models;
 
 import org.joda.time.DateTime;
 
-public class Task implements Comparable<Task> {
-
+public class Task implements Comparable<Task>{
+	
 	private double percentComplete = 0;
 	private boolean isComplete = false;
 	private DateTime startDate = new DateTime();
 	private DateTime endDate = new DateTime();
-	private String description = "[NULL]";
+	private String description =  "[NULL]";
 	private String name = "[NULL]";
 	private int priority = 1;
 	private String location = "[NULL]";
@@ -17,12 +17,14 @@ public class Task implements Comparable<Task> {
 	private boolean isRecurringMonthly = false;
 	private boolean isPercent = false;
 
+
 	public Task() {
 
 	}
 
-	public Task(DateTime startDate, DateTime endDate, String description, String name, int priority, String location,
-			boolean isRecurringDaily, boolean isRecurringWeekly, boolean isRecurringMonthly) {
+	public Task(DateTime startDate, DateTime endDate, String description,
+			String name, int priority, String location, boolean isRecurringDaily,
+			boolean isRecurringWeekly, boolean isRecurringMonthly) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.description = description;
@@ -33,13 +35,14 @@ public class Task implements Comparable<Task> {
 		this.isRecurringWeekly = isRecurringWeekly;
 		this.isRecurringMonthly = isRecurringMonthly;
 	}
+	
 
 	public double getPercentComplete() {
 		return percentComplete;
 	}
 
 	public void setPercentComplete(double percentComplete) {
-		if (percentComplete < 101) {
+		if(percentComplete < 101){
 			this.percentComplete = percentComplete;
 		}
 	}
@@ -89,7 +92,7 @@ public class Task implements Comparable<Task> {
 	}
 
 	public void setPriority(int priority) {
-		if (priority < 6) {
+		if(priority < 6){
 			this.priority = priority;
 		}
 	}
@@ -132,14 +135,14 @@ public class Task implements Comparable<Task> {
 	}
 
 	@Override
-	public String toString() {
+	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("Task: " + getName());
-		sb.append("\n\tStarts: " + getStartDate());
+		sb.append("\n\tStarts: " + getStartDate().toString());
 		sb.append("\n\tEnds: " + getEndDate());
-		if (isPercent()) {
+		if (isPercent()){
 			sb.append("\n\tPercent Complete: " + getPercentComplete() + "%");
-		} else if (!isPercent()) {
+		} else if (!isPercent()){
 			sb.append("\n\tComplete?: " + isComplete());
 		}
 		sb.append("\n\tDescription: " + getDescription());
