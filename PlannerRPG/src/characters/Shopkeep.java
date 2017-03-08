@@ -61,7 +61,22 @@ public class Shopkeep {
 	}
 
 	public void buyItem() {
-
+		int i = 0;
+		showInv();
+		try{
+			i = lib.ConsoleIO.promptForInt("Select an item number corresponding to the items above.", 1, h1.inventory.size()) - 1;
+		}catch (IOException ioe){
+		}
+		
+		Item e = shopInventory.get(i);
+		
+		if(h1.getRP() == e.getValue()){
+		h1.setRP(-e.getValue());
+		h1.addToInv(e);
+		shopInventory.remove(i);
+		} else {
+			System.out.println("That Item is too expensive for you.");
+		}
 	}
 	
 	public Item selectItem(){
