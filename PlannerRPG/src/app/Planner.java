@@ -15,6 +15,7 @@ import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -24,7 +25,7 @@ import lib.ProgramUtil;
 import models.Task;
 import models.User;
 
-public class Planner implements Serializable{
+public class Planner{
 	
 	private static User u;
 	private static String invalid = "Invalid input. Please, enter valid input.";
@@ -39,14 +40,14 @@ public class Planner implements Serializable{
 		int userinput = 0;
 		boolean isValid = false;
 		do {
-			try {
-				userinput = ConsoleIO.promptForMenuSelection(options, true);
-				isValid = true;
-			} catch (NumberFormatException nfe) {
-				System.out.println(invalid);
-			}
-		} while (!isValid);
-		do {
+			do {
+				try {
+					userinput = ConsoleIO.promptForMenuSelection(options, true);
+					isValid = true;
+				} catch (NumberFormatException nfe) {
+					System.out.println(invalid);
+				}
+			} while (!isValid);
 			if (userinput == 1) {
 				menu();
 			} else if (userinput == 2) {
@@ -71,7 +72,7 @@ public class Planner implements Serializable{
 				userOpt = ConsoleIO.promptForMenuSelection(options, true);
 			} catch (NumberFormatException nfe) {
 				System.out.println(invalid);
-				menu();
+				newMenu();
 			}
 			if (userOpt == 1) {
 				newUser();
@@ -448,29 +449,70 @@ public class Planner implements Serializable{
 		t.setName(name);
 	}
 
-	public static DateTime datePrompt() {
-		int year = promptForYear();
-		int month = promptForMonth();
-		int day = promptForDay(month, year);
-		int hour = promptForHour();
-		int minute = promptForMinute();
-		boolean isAM = isAM();
-		if (!isAM) {
-			hour = hour + 12;
-		}
+	public static DateTime datePrompt(Task t, boolean isStartDate) {
+		int year = 1;
+		int month = 1;
+		int day = 1;
+		int hour = 1;
+		int minute = 1;
 		DateTime d = new DateTime(year, month, day, hour, minute);
+		if (isStartDate) {
+			System.out.println("Does the task have a TIME?");
+			String[] options = { ". Yes", ". No" };
+			int choice = ConsoleIO.promptForMenuSelection(options, false);
+			if (choice == 1) {
+				year = promptForYear();
+				month = promptForMonth();
+				day = promptForDay(month, year);
+				hour = promptForHour();
+				minute = promptForMinute();
+				t.setTime(true);
+				boolean isAM = isAM();
+				if (!isAM) {
+					hour = hour + 12;
+				}
+				d = new DateTime(year, month, day, hour, minute);
+			} else if (choice == 2) {
+				year = promptForYear();
+				month = promptForMonth();
+				day = promptForDay(month, year);
+				t.setTime(false);
+				d = new DateTime(year, month, day, 0, 0);
+			}
+		} else {
+			if (t.isTime()) {
+				year = promptForYear();
+				month = promptForMonth();
+				day = promptForDay(month, year);
+				hour = promptForHour();
+				minute = promptForMinute();
+				t.setTime(true);
+				boolean isAM = isAM();
+				if (!isAM) {
+					hour = hour + 12;
+				}
+				d = new DateTime(year, month, day, hour, minute);
+			} else {
+				year = promptForYear();
+				month = promptForMonth();
+				day = promptForDay(month, year);
+				t.setTime(false);
+				d = new DateTime(year, month, day, 0, 0);
+			}
+		}
+
 		return d;
 	}
 
 	public static void startDate(Task t) {
 		System.out.println("START DATE");
-		DateTime d = datePrompt();
+		DateTime d = datePrompt(t, true);
 		t.setStartDate(d);
 	}
 
 	public static void endDate(Task t) {
 		System.out.println("END DATE");
-		DateTime d = datePrompt();
+		DateTime d = datePrompt(t, false);
 		t.setEndDate(d);
 	}
 
@@ -479,6 +521,7 @@ public class Planner implements Serializable{
 		if (complete) {
 			t.setComplete(true);
 			t.setPercentComplete(100);
+			// rewards
 		}
 	}
 
@@ -584,111 +627,21 @@ public class Planner implements Serializable{
 		}
 	}
 
-	public static void saveSerialize() {
-		String filepath = "";
-		boolean isValid = false;
-		while (!isValid) {
-			try {
-				filepath = ConsoleIO.promptForInput("What is the folder you'd like to save to?", false);
-				isValid = true;
-			} catch (IOException e1) {
-				System.out.println(invalid);
-			}
-		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(filepath + "/" + u.getName());
-		String fileName = sb.toString();
-		boolean isValid2 = false;
-		while (!isValid2) {
-			try {
-				FileOutputStream fileOut = new FileOutputStream(fileName);
-				ObjectOutputStream out = new ObjectOutputStream(fileOut);
-				out.writeObject(u);
-				out.close();
-				fileOut.close();
-				isValid2 = true;
-			} catch (IOException i) {
-				System.out.println(invalid);
-			}
-		}
-	}
-
-	public static void loadDeserialize() {
-		u = null;
-		String filepath = "";
-		boolean isValid = false;
-		while (!isValid) {
-			try {
-				filepath = ConsoleIO.promptForInput("What is the folder you'd like to load from?", false);
-				isValid = true;
-			} catch (IOException e1) {
-				System.out.println(invalid);
-			}
-		}
-
-		// int counter = 1;
-		// File[] files = new File(filepath).listFiles();
-		//
-		// for (File file : files) {
-		// if (file.isFile()) {
-		// System.out.println(counter + ". " + file.getName());
-		// }
-		// counter += 1;
-		// }
-		// boolean isValid2 = false;
-		// int user = 0;
-		// do {
-		// try {
-		// user = ConsoleIO.promptForInt("Which user would you like to load?",
-		// 1, counter);
-		// isValid2 = true;
-		// } catch (IOException e) {
-		// System.out.println(invalid);
-		// }
-		// } while (!isValid2);
-		// String userName = files[user].getName();
-		boolean notvalid = true;
-		String userName = "";
-		do {
-			try {
-				userName = ConsoleIO.promptForInput("What is the name of the user you'd like to load?", false);
-				notvalid = false;
-			} catch (IOException e) {
-				System.out.println(invalid);
-			}
-		} while (notvalid);
-		boolean loading = true;
-		StringBuilder sb = new StringBuilder();
-		sb.append(filepath + "/" + userName);
-		String fileName = sb.toString();
-		while (loading) {
-			try {
-				FileInputStream fileIn = new FileInputStream(fileName);
-				ObjectInputStream in = new ObjectInputStream(fileIn);
-				u = (User) in.readObject();
-				in.close();
-				fileIn.close();
-				loading = false;
-			} catch (IOException i) {
-				System.out.println(invalid);
-			} catch (ClassNotFoundException c) {
-				System.out.println(invalid);
-			}
-		}
-		mainMenu();
-	}
-
 	public static void loadSwing() {
 		boolean loading = true;
 		while (loading) {
 			try {
-				JButton open = new JButton();
+				final JFrame jFrame;
+				jFrame = new JFrame();
+				jFrame.setVisible(true);
+				jFrame.setExtendedState(JFrame.ICONIFIED);
+				jFrame.setExtendedState(JFrame.NORMAL);
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Open File");
 				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				fileChooser.setPreferredSize(new Dimension(800, 600));
 				fileChooser.setVisible(true);
-				if (fileChooser.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
+				if (fileChooser.showOpenDialog(jFrame) == JFileChooser.APPROVE_OPTION) {
 
 					// load from file
 				}
@@ -714,19 +667,23 @@ public class Planner implements Serializable{
 		}
 		mainMenu();
 	}
-	
-	public static void saveSwing(){
-		
+
+	public static void saveSwing() {
+
 		boolean isValid2 = false;
 		while (!isValid2) {
 			try {
-				JButton open = new JButton();
+				final JFrame jFrame;
+				jFrame = new JFrame();
+				jFrame.setVisible(true);
+				jFrame.setExtendedState(JFrame.ICONIFIED);
+				jFrame.setExtendedState(JFrame.NORMAL);
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Open File");
 				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				fileChooser.setPreferredSize(new Dimension(800, 600));
 				fileChooser.setVisible(true);
-				if (fileChooser.showSaveDialog(open) == JFileChooser.APPROVE_OPTION) {
+				if (fileChooser.showSaveDialog(jFrame) == JFileChooser.APPROVE_OPTION) {
 
 					// load from file
 				}
@@ -736,6 +693,7 @@ public class Planner implements Serializable{
 				out.writeObject(u);
 				out.close();
 				fileOut.close();
+				System.out.println("Save Successful.");
 				isValid2 = true;
 			} catch (IOException i) {
 				System.out.println(invalid);

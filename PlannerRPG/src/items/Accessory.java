@@ -110,9 +110,6 @@ public class Accessory extends Item {
 	
 	public Accessory(Rarity rarity, int percent){
 		setValues(rarity, percent);
-		this.rarity = getRarity();
-		this.name = getName();
-		this.value = getValue();
 	}
 
 	@Override
