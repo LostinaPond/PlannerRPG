@@ -5,6 +5,7 @@ import java.util.Random;
 import characters.Character;
 import gameEnums.Rarity;
 import interfaces.Consumable;
+import models.User;
 
 public class Potion extends Item implements Consumable {
 
@@ -46,9 +47,9 @@ public class Potion extends Item implements Consumable {
 		int number = 0;
 
 		if (rarity.equals(Rarity.Common)) {
-			number = rand.nextInt(10) + 1;
+			number = rand.nextInt(500) + 1;
 		} else {
-			number = rand.nextInt(20) + 1;
+			number = rand.nextInt(1000) + 1;
 		}
 
 		num = number * 10;
@@ -69,9 +70,9 @@ public class Potion extends Item implements Consumable {
 	}
 
 	@Override
-	public void use(Character c, int rdr) {
-		int i = c.getCurrentHP() + getNum();
-		c.setCurrentHP(i);
+	public void use(User u) {
+		int i = u.getCurrentHP() + getNum();
+		u.setCurrentHP(i);
 	}
 
 	@Override
@@ -79,6 +80,12 @@ public class Potion extends Item implements Consumable {
 		String potionInfo = "Potion" + "\nHeal Amount: " + getNum() + "\nRarity: " + getRarity() + "\nValue: "
 				+ getValue();
 		return potionInfo;
+	}
+	
+	@Override
+	public String toString() {
+		String itemInfo = "Potion" + "\nHeal Amount: " + getNum() + "\nRarity: " + getRarity() + "\nValue: " + getValue() + "RP";
+		return itemInfo;
 	}
 
 }

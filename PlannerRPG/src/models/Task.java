@@ -1,7 +1,5 @@
 package models;
 
-import java.io.Serializable;
-
 import org.joda.time.DateTime;
 
 public class Task implements Comparable<Task>{
@@ -17,6 +15,7 @@ public class Task implements Comparable<Task>{
 	private boolean isRecurringDaily = false;
 	private boolean isRecurringWeekly = false;
 	private boolean isRecurringMonthly = false;
+	private boolean isRecurringYearly = false;
 	private boolean isPercent = false;
 	private boolean isTime = false;
 
@@ -127,6 +126,14 @@ public class Task implements Comparable<Task>{
 
 	public void setRecurringMonthly(boolean isRecurringMonthly) {
 		this.isRecurringMonthly = isRecurringMonthly;
+	}
+	
+	public boolean isRecurringYearly() {
+		return isRecurringYearly;
+	}
+	
+	public void setRecurringYearly(boolean isRecurringYearly) {
+		this.isRecurringYearly = isRecurringYearly;
 	}
 
 	@Override

@@ -2,20 +2,19 @@ package gameApp;
 
 import java.util.Random;
 
-import characters.Hero;
 import gameEnums.Rarity;
 import items.Accessory;
 import items.Armor;
 import items.Item;
 import items.Potion;
 import items.Weapon;
+import models.User;
 
 public class LootGenerator {
 
-	static Hero h1 = new Hero();
 	static Random rand = new Random();
 
-	public static void generateRandomItem() {
+	public static void generateRandomItem(User h1) {
 
 		int choice = rand.nextInt(5) + 1;
 
@@ -69,21 +68,24 @@ public class LootGenerator {
 		return i;
 	}
 	
-	public static void generateItem(Rarity rarity, int percent) {
+	public static void generateItem(Rarity rarity, int percent, User h1) {
 
 		int choice = rand.nextInt(3) + 1;
 
 		switch (choice) {
 		case 1:
 			Weapon w = new Weapon(rarity, percent);
+			System.out.println("Dropped " + w.getName());
 			h1.addToInv(w);
 			break;
 		case 2:
 			Armor a = new Armor(rarity, percent);
+			System.out.println("Dropped " + a.getName());
 			h1.addToInv(a);
 			break;
 		case 3:
 			Accessory e = new Accessory(rarity, percent);
+			System.out.println("Dropped " + e.getName());
 			h1.addToInv(e);
 			break;
 		}

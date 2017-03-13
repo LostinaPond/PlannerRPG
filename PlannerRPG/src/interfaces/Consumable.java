@@ -1,10 +1,10 @@
 package interfaces;
 
-import characters.Character;
+import models.User;
 
 public interface Consumable {
 
-	void use(Character c, int rdr);
+	void use(User u);
 	String getDescription();
 	
 }

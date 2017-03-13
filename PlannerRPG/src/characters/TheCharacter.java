@@ -2,10 +2,11 @@ package characters;
 
 import java.util.Random;
 
+import items.Accessory;
 import items.Armor;
 import items.Weapon;
 
-public abstract class Character {
+public abstract class TheCharacter {
 
 	protected int strBase;
 	protected int defBase;
@@ -17,9 +18,34 @@ public abstract class Character {
 	protected int currentHP;
 	protected Weapon equippedWeapon;
 	protected Armor equippedArmor;
+	protected Accessory equippedAccessory;
 
 	public Random rand = new Random();
 
+	public Accessory getEquippedAccessory(){
+		return equippedAccessory;
+	}
+	
+	public void setEquippedAccessory(Accessory a){
+		this.equippedAccessory = a;
+	}
+	
+	public Weapon getEquippedWeapon(){
+		return equippedWeapon;
+	}
+	
+	public void setEquippedWeapon(Weapon w){
+		this.equippedWeapon = w;
+	}
+	
+	public Armor getEquippedArmor(){
+		return equippedArmor;
+	}
+	
+	public void setEquippedArmor(Armor a){
+		this.equippedArmor = a;
+	}
+	
 	public int getStrBase() {
 		return strBase;
 	}
@@ -100,5 +126,5 @@ public abstract class Character {
 
 	public abstract int attack();
 
-	public abstract int takeDamage(int damage, int armorDR, int defense);
+	public abstract int takeDamage(int damage);
 }

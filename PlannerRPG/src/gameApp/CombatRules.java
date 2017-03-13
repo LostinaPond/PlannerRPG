@@ -6,7 +6,7 @@ public class CombatRules {
 	
 	public Random rando = new Random();
 
-	public int critHit(boolean doesHit, int luckMod, int damage){
+	public static int critHit(boolean doesHit, int luckMod, int damage){
 		int roll = (rando.nextInt(20) + 1) + luckMod;
 		if(doesHit && roll >= 15){
 			damage = damage * 2;
@@ -17,7 +17,7 @@ public class CombatRules {
 		return damage;
 	}
 	
-	public boolean doesHit(int playerLuckMod, int enemyLuckMod){
+	public static boolean doesHit(int playerLuckMod, int enemyLuckMod){
 		boolean doesHit = true;
 		int pRoll = (rando.nextInt(20) + 1) + playerLuckMod;
 		int eRoll = (rando.nextInt(20) + 1) + enemyLuckMod;

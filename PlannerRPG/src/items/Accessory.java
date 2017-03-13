@@ -114,7 +114,7 @@ public class Accessory extends Item {
 
 	@Override
 	public String toString() {
-		String itemInfo = "Name: " + getName() + "\nRarity: " + getRarity() + "\nValue: " + getValue();
+		String itemInfo = "(Accessory) Name: " + getName() + "\nRarity: " + getRarity() + "\nValue: " + getValue() + "RP";
 		return itemInfo;
 	}
 

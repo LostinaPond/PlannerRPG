@@ -101,6 +101,10 @@ public class Item {
 		value = output;
 	}
 	
+	public void setValue(int value){
+		this.value = value;
+	}
+	
 	public void setValues(){
 		setRarity(whatRarity());
 		setValue();
@@ -125,7 +129,7 @@ public class Item {
 	
 	@Override
 	public String toString(){
-		String itemInfo = "Name: " + getName() + "\nRarity: " + getRarity() + "\nValue: " + getValue();
+		String itemInfo = "(Item) Name: " + getName() + "\nRarity: " + getRarity() + "\nValue: " + getValue() + "RP";
 		return itemInfo;
 	}
 }
